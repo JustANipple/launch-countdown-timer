@@ -1,0 +1,26 @@
+{
+  "name": "launch-countdown-timer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.7",
+    "tailwindcss": "^4.1.7",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "eslint": "^9.27.0",
+    "eslint-plugin-vue": "^10.1.0",
+    "globals": "^16.1.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "vite": "^6.3.5"
+  }
+}

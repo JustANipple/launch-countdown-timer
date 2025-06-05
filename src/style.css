@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap");
+
+@import "./reset.css";
+@import "tailwindcss";
+
+@theme {
+    /* Primary */
+    --color-grayish-blue: hsl(237, 18%, 59%);
+    --color-soft-red: hsl(345, 95%, 68%);
+    /* Neutral */
+    --color-white: hsl(0, 0%, 100%);
+    --color-dark-desaturated-blue: hsl(236, 21%, 26%);
+    --color-very-dark-blue: hsl(235, 16%, 14%);
+    --color-very-dark-blue-mostly-black: hsl(234, 17%, 12%);
+    /* Font */
+    --font-body: 14px;
+    --font-display: "Red Hat Text", sans-serif;
+    --font-weight: 700;
+
+    --bg-image: url(/public/images/pattern-hills.svg);
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-display);
+    font-size: var(--font-body);
+    font-weight: var(--font-weight);
+}
+
+#app {
+    min-height: 100vh;
+}
