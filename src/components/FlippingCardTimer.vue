@@ -12,6 +12,9 @@ const props = defineProps({
     },
 });
 
+const currentTime = ref(props.time);
+const nextTime = ref(props.time);
+
 const currentTimeFormatted = computed(() => {
     return String(props.time).padStart(2, "0");
 });
@@ -24,57 +27,42 @@ const isFlipping = ref(false);
 
 watch(
     () => props.time,
-    () => {
+    (newTime) => {
         isFlipping.value = true;
         setTimeout(() => {
             isFlipping.value = false;
-        }, 3000);
+        }, 750);
     },
 );
 </script>
 
 <template>
-    <!-- Container -->
-    <div class="grid gap-y-4 transform-3d">
-        <!-- Card : Front -->
-        <div class="grid text-4xl">
-            <!-- Half : Upper -->
+    <div class="grid gap-y-10">
+        <!-- Flipping Card -->
+        <div
+            class="relative grid h-[36px] w-[70px] origin-bottom text-4xl perspective-midrange transform-3d"
+            :class="{ 'animate-flip': isFlipping }"
+        >
+            <!-- Front face -->
             <div
-                class="relative z-10 w-[70px] origin-bottom overflow-hidden rounded-md bg-[#2b2d46] text-center transform-3d"
-                :class="{ 'animate-flip': isFlipping }"
+                class="absolute inset-0 overflow-hidden rounded-md bg-[#2b2d46] text-center backface-hidden"
             >
                 <p class="translate-y-[50%] leading-none text-[#d75476]">
                     {{ currentTimeFormatted }}
                 </p>
             </div>
-            <!-- Half : Lower -->
+
+            <!-- Back face (flipped) -->
             <div
-                class="relative z-0 w-[70px] overflow-hidden rounded-md bg-[#35364b] text-center"
-            >
-                <p class="-translate-y-[50%] leading-none text-[#fa6288]">
-                    {{ currentTimeFormatted }}
-                </p>
-            </div>
-        </div>
-        <!-- Card : Back -->
-        <div class="grid text-4xl">
-            <!-- Half : Upper -->
-            <div
-                class="w-[70px] overflow-hidden rounded-md bg-[#2b2d46] text-center"
-            >
-                <p class="translate-y-[50%] leading-none text-[#d75476]">
-                    {{ nextTimeFormatted }}
-                </p>
-            </div>
-            <!-- Half : Lower -->
-            <div
-                class="w-[70px] overflow-hidden rounded-md bg-[#35364b] text-center"
+                class="absolute inset-0 rotate-x-180 overflow-hidden rounded-md bg-[#35364b] text-center backface-hidden"
             >
                 <p class="-translate-y-[50%] leading-none text-[#fa6288]">
                     {{ nextTimeFormatted }}
                 </p>
             </div>
         </div>
+
+        <!-- Label -->
         <p
             class="text-center text-[7px] font-thin tracking-[.25rem] text-white uppercase opacity-70"
         >
@@ -85,7 +73,7 @@ watch(
 
 <style scoped>
 .animate-flip {
-    animation: flip 3s ease-in-out forwards;
+    animation: flip 0.75s ease-in-out;
 }
 
 @keyframes flip {
@@ -96,7 +84,7 @@ watch(
         transform: rotateX(180deg);
     }
     100% {
-        transform: rotateX(180deg);
+        transform: rotateX(360deg);
     }
 }
 </style>

@@ -11,7 +11,7 @@ const time = ref({
 
 setInterval(() => {
     handleSeconds();
-}, 4000);
+}, 1500);
 
 function handleSeconds() {
     if (time.value.seconds - 1 === 0) {
