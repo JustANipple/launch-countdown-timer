@@ -16,31 +16,31 @@ setInterval(() => {
 function handleSeconds(time) {
     if (time.seconds - 1 === 0) {
         time.seconds = 59;
-        handleMinutes();
+        handleMinutes(time);
     } else {
         time.seconds -= 1;
     }
 }
 
-function handleMinutes() {
+function handleMinutes(time) {
     if (time.minutes - 1 === 0) {
         time.minutes = 59;
-        handleHours();
+        handleHours(time);
     } else {
         time.minutes -= 1;
     }
 }
 
-function handleHours() {
+function handleHours(time) {
     if (time.hours - 1 === 0) {
         time.hours = 23;
-        handleDays();
+        handleDays(time);
     } else {
         time.hours -= 1;
     }
 }
 
-function handleDays() {
+function handleDays(time) {
     if (time.days - 1 === 0) {
         time.days = 0;
     } else {

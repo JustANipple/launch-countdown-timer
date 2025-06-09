@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
     time: {
@@ -22,11 +22,23 @@ watch(
     () => props.time,
     (newTime) => {
         isFlipping.value = true;
+
+        const maxValue = {
+            seconds: 59,
+            minutes: 59,
+            hours: 23,
+            days: 99,
+        };
+
         setTimeout(() => {
             isFlipping.value = false;
+
+            const next =
+                newTime - 1 <= 0 ? maxValue[props.timeType] : newTime - 1;
+
             currentTimeFormatted.value = String(newTime).padStart(2, "0");
-            nextTimeFormatted.value = String(newTime - 1).padStart(2, "0");
-        }, 495);
+            nextTimeFormatted.value = String(next).padStart(2, "0");
+        }, 750);
     },
 );
 </script>
@@ -89,7 +101,7 @@ watch(
 
 <style scoped>
 .animate-flip {
-    animation: flip 0.99s ease-in-out;
+    animation: flip 1.5s ease-in-out;
 }
 
 @keyframes flip {
