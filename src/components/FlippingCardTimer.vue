@@ -36,8 +36,8 @@ watch(
             const next =
                 newTime - 1 <= 0 ? maxValue[props.timeType] : newTime - 1;
 
-            currentTimeFormatted.value = String(newTime).padStart(2, "0");
-            nextTimeFormatted.value = String(next).padStart(2, "0");
+            currentTimeFormatted.value = newTime;
+            nextTimeFormatted.value = next;
         }, 750);
     },
 );
@@ -47,15 +47,15 @@ watch(
     <div class="relative grid gap-y-10">
         <!-- Flipping Card -->
         <div
-            class="relative z-10 grid h-[36px] w-[70px] origin-bottom text-4xl perspective-midrange transform-3d"
+            class="relative z-10 grid h-[34px] w-[70px] origin-bottom text-4xl perspective-midrange transform-3d"
             :class="{ 'animate-flip': isFlipping }"
         >
             <!-- Front face -->
             <div
                 class="absolute inset-0 overflow-hidden rounded-md bg-[#2b2d46] text-center backface-hidden"
             >
-                <p class="translate-y-[50%] leading-none text-[#d75476]">
-                    {{ currentTimeFormatted }}
+                <p class="translate-y-[17px] leading-none text-[#d75476]">
+                    {{ String(currentTimeFormatted).padStart(2, "0") }}
                 </p>
             </div>
 
@@ -63,29 +63,29 @@ watch(
             <div
                 class="absolute inset-0 rotate-x-180 overflow-hidden rounded-md bg-[#35364b] text-center backface-hidden"
             >
-                <p class="-translate-y-[50%] leading-none text-[#fa6288]">
-                    {{ nextTimeFormatted }}
+                <p class="-translate-y-[17px] leading-none text-[#fa6288]">
+                    {{ String(nextTimeFormatted).padStart(2, "0") }}
                 </p>
             </div>
         </div>
 
         <!-- Card -->
-        <div class="absolute z-0 grid h-[36px] w-[70px] origin-bottom text-4xl">
+        <div class="absolute z-0 grid h-[34px] w-[70px] origin-bottom text-4xl">
             <!-- Upper -->
             <div
-                class="h-[36px] overflow-hidden rounded-md bg-[#2b2d46] text-center"
+                class="h-[34px] overflow-hidden rounded-md bg-[#2b2d46] text-center"
             >
-                <p class="translate-y-[50%] leading-none text-[#d75476]">
-                    {{ nextTimeFormatted }}
+                <p class="translate-y-[17px] leading-none text-[#d75476]">
+                    {{ String(nextTimeFormatted).padStart(2, "0") }}
                 </p>
             </div>
 
             <!-- Lower -->
             <div
-                class="h-[36px] overflow-hidden rounded-md bg-[#35364b] text-center"
+                class="h-[34px] overflow-hidden rounded-md bg-[#35364b] text-center"
             >
-                <p class="-translate-y-[50%] leading-none text-[#fa6288]">
-                    {{ currentTimeFormatted }}
+                <p class="-translate-y-[17px] leading-none text-[#fa6288]">
+                    {{ String(currentTimeFormatted).padStart(2, "0") }}
                 </p>
             </div>
         </div>

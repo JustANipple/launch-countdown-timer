@@ -51,7 +51,9 @@ function handleDays(time) {
 
 <template>
     <main class="bg-very-dark-blue-mostly-black flex min-h-screen flex-col">
-        <div class="flex flex-1 items-center justify-center">
+        <div
+            class="flex flex-1 items-center justify-center bg-[url(/images/bg-stars.svg)]"
+        >
             <div class="grid gap-y-[60px]">
                 <h1
                     class="text-center text-lg leading-6 font-semibold tracking-[0.375rem] text-white uppercase"
