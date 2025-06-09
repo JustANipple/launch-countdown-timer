@@ -10,41 +10,41 @@ const time = ref({
 });
 
 setInterval(() => {
-    handleSeconds();
-}, 1500);
+    handleSeconds(time.value);
+}, 1000);
 
-function handleSeconds() {
-    if (time.value.seconds - 1 === 0) {
-        time.value.seconds = 59;
+function handleSeconds(time) {
+    if (time.seconds - 1 === 0) {
+        time.seconds = 59;
         handleMinutes();
     } else {
-        time.value.seconds -= 1;
+        time.seconds -= 1;
     }
 }
 
 function handleMinutes() {
-    if (time.value.minutes - 1 === 0) {
-        time.value.minutes = 59;
+    if (time.minutes - 1 === 0) {
+        time.minutes = 59;
         handleHours();
     } else {
-        time.value.minutes -= 1;
+        time.minutes -= 1;
     }
 }
 
 function handleHours() {
-    if (time.value.hours - 1 === 0) {
-        time.value.hours = 23;
+    if (time.hours - 1 === 0) {
+        time.hours = 23;
         handleDays();
     } else {
-        time.value.hours -= 1;
+        time.hours -= 1;
     }
 }
 
 function handleDays() {
-    if (time.value.days - 1 === 0) {
-        time.value.days = 0;
+    if (time.days - 1 === 0) {
+        time.days = 0;
     } else {
-        time.value.days -= 1;
+        time.days -= 1;
     }
 }
 </script>

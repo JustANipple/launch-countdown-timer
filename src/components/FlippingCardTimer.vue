@@ -12,16 +12,9 @@ const props = defineProps({
     },
 });
 
-const currentTime = ref(props.time);
-const nextTime = ref(props.time);
+let currentTimeFormatted = ref(props.time);
 
-const currentTimeFormatted = computed(() => {
-    return String(props.time).padStart(2, "0");
-});
-
-const nextTimeFormatted = computed(() => {
-    return String(props.time - 1).padStart(2, "0");
-});
+let nextTimeFormatted = ref(props.time - 1);
 
 const isFlipping = ref(false);
 
@@ -31,16 +24,18 @@ watch(
         isFlipping.value = true;
         setTimeout(() => {
             isFlipping.value = false;
-        }, 750);
+            currentTimeFormatted.value = String(newTime).padStart(2, "0");
+            nextTimeFormatted.value = String(newTime - 1).padStart(2, "0");
+        }, 495);
     },
 );
 </script>
 
 <template>
-    <div class="grid gap-y-10">
+    <div class="relative grid gap-y-10">
         <!-- Flipping Card -->
         <div
-            class="relative grid h-[36px] w-[70px] origin-bottom text-4xl perspective-midrange transform-3d"
+            class="relative z-10 grid h-[36px] w-[70px] origin-bottom text-4xl perspective-midrange transform-3d"
             :class="{ 'animate-flip': isFlipping }"
         >
             <!-- Front face -->
@@ -62,6 +57,27 @@ watch(
             </div>
         </div>
 
+        <!-- Card -->
+        <div class="absolute z-0 grid h-[36px] w-[70px] origin-bottom text-4xl">
+            <!-- Upper -->
+            <div
+                class="h-[36px] overflow-hidden rounded-md bg-[#2b2d46] text-center"
+            >
+                <p class="translate-y-[50%] leading-none text-[#d75476]">
+                    {{ nextTimeFormatted }}
+                </p>
+            </div>
+
+            <!-- Lower -->
+            <div
+                class="h-[36px] overflow-hidden rounded-md bg-[#35364b] text-center"
+            >
+                <p class="-translate-y-[50%] leading-none text-[#fa6288]">
+                    {{ currentTimeFormatted }}
+                </p>
+            </div>
+        </div>
+
         <!-- Label -->
         <p
             class="text-center text-[7px] font-thin tracking-[.25rem] text-white uppercase opacity-70"
@@ -73,7 +89,7 @@ watch(
 
 <style scoped>
 .animate-flip {
-    animation: flip 0.75s ease-in-out;
+    animation: flip 0.99s ease-in-out;
 }
 
 @keyframes flip {
