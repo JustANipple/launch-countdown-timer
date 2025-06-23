@@ -54,13 +54,13 @@ function handleDays(time) {
         <div
             class="flex flex-1 items-center justify-center bg-[url(/images/bg-stars.svg)]"
         >
-            <div class="grid gap-y-[60px]">
+            <div class="grid place-items-center gap-y-[60px] md:gap-y-[100px]">
                 <h1
-                    class="text-center text-lg leading-6 font-semibold tracking-[0.375rem] text-white uppercase"
+                    class="text-center text-lg leading-6 font-semibold tracking-[0.375rem] text-white uppercase md:text-xl md:font-bold md:tracking-[.55rem]"
                 >
                     We're launching <span class="block sm:inline">soon</span>
                 </h1>
-                <div class="flex gap-4">
+                <div class="flex gap-4 md:gap-8">
                     <FlippingCardTimer :time="time.days" :timeType="'days'" />
                     <FlippingCardTimer :time="time.hours" :timeType="'hours'" />
                     <FlippingCardTimer
@@ -75,15 +75,22 @@ function handleDays(time) {
             </div>
         </div>
         <footer
-            class="flex h-[168px] items-end justify-center bg-[url(/images/pattern-hills.svg)] bg-size-[950px_130px] bg-[position:calc(100%+4.75rem)_0] bg-no-repeat"
+            class="flex h-[168px] items-end justify-center bg-[url(/images/pattern-hills.svg)] bg-size-[950px_130px] bg-[position:calc(100%+4.75rem)_0] bg-no-repeat md:h-[200px] md:bg-cover md:bg-center"
         >
             <div
-                class="flex w-full items-center justify-center gap-8 bg-[#2f2439] pb-12"
+                class="flex w-full items-center justify-center gap-8 bg-[#2f2439] pb-12 md:pb-19"
             >
-                <img src="/images/icon-facebook.svg" alt="" />
-                <img src="/images/icon-pinterest.svg" alt="" />
-                <img src="/images/icon-instagram.svg" alt="" />
+                <a href="#"><img src="/images/icon-facebook.svg" alt="" /></a>
+                <a href="#"><img src="/images/icon-pinterest.svg" alt="" /></a>
+                <a href="#"><img src="/images/icon-instagram.svg" alt="" /></a>
             </div>
         </footer>
     </main>
 </template>
+<style scoped>
+img:hover {
+    filter: invert(53%) sepia(55%) saturate(2303%) hue-rotate(310deg)
+        brightness(100%) contrast(98%);
+    cursor: pointer;
+}
+</style>
